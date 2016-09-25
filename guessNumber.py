@@ -11,14 +11,15 @@ def guessed():
 
 	while winner:
 		if int_answer == winner:
-			output = Label(bottomFrame, text="Congratulations! You go it :)").pack()
+			submitguess.config(state='disabled')
+			output = Label(bottomFrame, text="Congratulations! You got it :)").pack()
 			break
 			return
 		elif int_answer < winner:
-			output = Label(bottomFrame, text="You're guess is too low. Try again.").pack()
+			output = Label(bottomFrame, text="Your guess is too low. Try again.").pack()
 			return
 		elif int_answer > winner:
-			output = Label(bottomFrame, text="You're guess is too high. Try again.").pack()
+			output = Label(bottomFrame, text="Your guess is too high. Try again.").pack()
 			return
 		else:
 			output = Label(bottomFrame, text="Your guess was invalid.").pack()
