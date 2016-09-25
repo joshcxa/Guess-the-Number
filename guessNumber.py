@@ -1,20 +1,47 @@
+from tkinter import *
+
 import random
-number = str(random.randint(1, 10))
+winner = str(random.randint(1, 10))
+winner = int(winner)
 
-print(number) # Show for testing
+def guessed():
+	guessint = userguess.get()
+	int_answer = int(guessint)
+	display = Label(bottomFrame, text="You guessed " + str(int_answer)).pack()
 
-print("I bet you can't guess the number I am thinking of between 1 and 10?")
-guess = str(input("Type in your guess. "))
+	while winner:
+		if int_answer == winner:
+			output = Label(bottomFrame, text="Congratulations! You go it :)").pack()
+			break
+			return
+		elif int_answer < winner:
+			output = Label(bottomFrame, text="You're guess is too low. Try again.").pack()
+			return
+		elif int_answer > winner:
+			output = Label(bottomFrame, text="You're guess is too high. Try again.").pack()
+			return
+		else:
+			output = Label(bottomFrame, text="Your guess was invalid.").pack()
+			return
+	
+root = Tk()
+root.title("Guess the number")
 
-print("You guessed " + guess + "...")
+topFrame = Frame(root)
+topFrame.pack(fill=X, padx=15, pady=15)
+bottomFrame = Frame(root)
+bottomFrame.pack(fill=X, padx=15, pady=15)
 
-while number:
-	if guess == number:
-		print("Congratulations! You go it :)")
-		break
-	elif guess < number:
-		guess = str(input("You're guess is too low. Try again. "))
-	elif guess > number:
-		guess = str(input("You're guess is too high. Try again. "))
-	else:
-		print("You're guess was invalid.")
+# Show for testing
+#Label(topFrame, text=winner).pack()
+
+intro = Label(topFrame, text="Guess the number between 1 and 10.")
+intro.pack(fill=X)
+
+userguess = Entry(topFrame, bd = 1, justify = CENTER)
+userguess.pack(fill=X)
+
+submitguess = Button(topFrame, text = "Submit Guess", command = guessed)
+submitguess.pack(fill=X)
+
+root.mainloop()
